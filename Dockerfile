@@ -11,10 +11,11 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y ed openssh-server
     stable" \
  && apt-get update && apt-get install docker-ce -y && apt-get clean
  
+ENV PASSWORD root
  
 RUN mkdir /var/run/sshd
 
-RUN echo 'root:root' |chpasswd
+RUN echo 'root:'$PASSWORD |chpasswd
 
 RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
