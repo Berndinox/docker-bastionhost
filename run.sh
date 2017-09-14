@@ -1,3 +1,3 @@
 #!/bin/sh
-echo "root:"$PASSWORD | chpasswdexec
+echo "root:"$PASSWORD | chpasswd
 exec "$@"
