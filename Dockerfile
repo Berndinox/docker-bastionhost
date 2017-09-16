@@ -16,10 +16,9 @@ ENV PASSWORD root
 
 RUN chmod 755 /usr/sbin/run.sh && mkdir -p /var/run/sshd /root/.ssh \
  && sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config \
- && sed -i '2i auth required pam_google_authenticator.so' /etc/pam.d/sshd \
+ && sed -i -e 'auth required pam_google_authenticator.so' /etc/pam.d/sshd \
  && echo 'root:'$PASSWORD |chpasswd
-RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+ && sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 
 EXPOSE 22
