@@ -14,11 +14,9 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
  
 ENV PASSWORD root
 
-RUN chmod 755 /usr/sbin/run.sh && mkdir -p /var/run/sshd \
+RUN chmod 755 /usr/sbin/run.sh && mkdir -p /var/run/sshd /root/.ssh \
  && sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config \
  && sed -i '2i auth required pam_google_authenticator.so' /etc/pam.d/sshd \
- && sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config \
- && sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
  && echo 'root:'$PASSWORD |chpasswd
 
 EXPOSE 22
