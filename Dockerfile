@@ -14,8 +14,9 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
  
 ENV PASSWORD root
  
-RUN mkdir /var/run/sshd && chmod 755 /usr/sbin/run.sh && echo "auth required pam_google_authenticator.so" >> /etc/pam.d/sshd
+RUN mkdir /var/run/sshd && chmod 755 /usr/sbin/run.sh
 RUN sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
+RUN sed -i '2i auth required pam_google_authenticator.so' /etc/pam.d/sshd
 
 RUN echo 'root:'$PASSWORD |chpasswd
 
