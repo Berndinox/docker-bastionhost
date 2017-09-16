@@ -2,7 +2,7 @@ FROM       phusion/baseimage
 MAINTAINER Bernd KLAUS "https://berndklaus.at"
 
 ADD run.sh /usr/sbin/run.sh
-RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y openssh-server openssh-client nano \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server openssh-client nano \
     curl wget zip unzip apt-transport-https ca-certificates curl software-properties-common libpam-google-authenticator \
  && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
  && apt-key fingerprint 0EBFCD88 \
