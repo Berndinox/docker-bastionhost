@@ -1,3 +1,8 @@
+### outdated
+### for testing only
+### no warranty
+---------------------------
+
 # docker-bastionhost
 
 Controll your Docker Containers via Shell from inside another Docker Container!
