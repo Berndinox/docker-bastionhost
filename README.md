@@ -46,3 +46,6 @@ docker exec -it DOCKERID google-authenticator
 to generate the config and be able to scan the QR
 
 
+###
+License of installed / used packages apply!
+
